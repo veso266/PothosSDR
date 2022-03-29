@@ -104,6 +104,22 @@ MyExternalProject_Add(fftw
     LICENSE_FILES COPYING COPYRIGHT
 )
 
+############################################################
+## SDL1.2 (prebuilt)
+############################################################
+MyExternalProject_Add(libsdl
+    URL http://web.archive.org/web/20191227232250if_/http://libsdl.org/release/SDL-devel-1.2.15-VC.zip
+    CONFIGURE_COMMAND echo "..."
+    BUILD_COMMAND echo "..."
+    INSTALL_COMMAND echo "..."
+    LICENSE_FILES COPYING COPYRIGHT
+)
+
+ExternalProject_Get_Property(libsdl SOURCE_DIR)
+set(SDL_INCLUDE_DIRS ${SOURCE_DIR}/SDL-1.2.15/include)
+set(SDL_LIBRARY ${SOURCE_DIR}/SDL-1.2.15/lib/x64)
+install(FILES "${SOURCE_DIR}/SDL-1.2.15/lib/x64/SDL.dll" DESTINATION bin)
+
 ExternalProject_Get_Property(fftw SOURCE_DIR)
 set(FFTW3F_INCLUDE_DIRS ${SOURCE_DIR})
 set(FFTW3F_LIBRARIES ${SOURCE_DIR}/libfftw3f-3.lib)
