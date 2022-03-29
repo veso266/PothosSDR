@@ -9,6 +9,7 @@
 ## * fx3 (prebuilt static libs)
 ## * swig (prebuilt generator)
 ## * fftw (prebuilt runtime dlls)
+## * SDL 1.2 (prebuilt runtime dlls)
 ## * liquiddsp (prebuilt runtime dlls)
 ############################################################
 
