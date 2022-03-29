@@ -11,7 +11,7 @@ endif()
 enable_language(CXX) #defines MSVCxx variables
 message(STATUS "MSVC_VERSION: ${MSVC_VERSION}")
 message(STATUS "CMAKE_GENERATOR: ${CMAKE_GENERATOR}")
-if ("${MSVC_VERSION}" STREQUAL "1928")
+if ("${MSVC_VERSION}" STREQUAL "1929")
     set(MSVC_VERSION_YEAR 2019)
     set(MSVC_VERSION_MAJOR 16)
     set(MSVC_VERSION_MINOR 0)
