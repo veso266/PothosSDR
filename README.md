@@ -43,6 +43,10 @@ https://www.python.org/downloads/
 **Git:** Install msysgit, make sure git is in the command PATH.
 https://msysgit.github.io/index.old.html
 
+**Perl:** Version 5.12 or later to build QT5, you can get ActivePerl installer ActiveState or here
+also make sure perl is in the command PATH: 
+https://www.filehorse.com/download-activeperl/42528/download/
+
 **CMake:** The build environment is cmake-based,
 as are most projects built by this environment.
 https://cmake.org/download/
