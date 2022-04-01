@@ -269,7 +269,7 @@ set(QT5_ROOT ${CMAKE_CURRENT_BINARY_DIR}/Qt${QT5_BRANCH}-vc${MSVC_VERSION_MAJOR}
 message(STATUS "QT5_ROOT: ${QT5_ROOT}")
 
 MyExternalProject_Add(Qt5
-    GIT_REPOSITORY git://code.qt.io/qt/qt5.git
+    GIT_REPOSITORY https://code.qt.io/qt/qt5.git
     GIT_TAG ${QT5_BRANCH}
     GIT_SUBMODULES "" #handled by init-repository
     GIT_SHALLOW TRUE
@@ -411,7 +411,7 @@ set(FDK_AAC_LIBRARY ${BINARY_DIR}/lib/fdk-aac.lib)
 ## Build CPPUNIT
 ############################################################
 MyExternalProject_Add(CppUnit
-    GIT_REPOSITORY git://anongit.freedesktop.org/git/libreoffice/cppunit/
+    GIT_REPOSITORY https://anongit.freedesktop.org/git/libreoffice/cppunit/
     GIT_TAG ${CPPUNIT_BRANCH}
     PATCH_COMMAND ${GIT_PATCH_HELPER} --git ${GIT_EXECUTABLE}
         ${PROJECT_SOURCE_DIR}/patches/cppunit_dll_project_files.diff
@@ -511,7 +511,7 @@ MyExternalProject_Add(Log4CPP
 ## so we copy mpir.lib to mpirxx.lib to trick gnuradio
 ############################################################
 MyExternalProject_Add(MPIR
-    GIT_REPOSITORY git://github.com/BrianGladman/mpir.git
+    GIT_REPOSITORY https://github.com/BrianGladman/mpir.git
     GIT_TAG ${MPIR_BRANCH}
     CONFIGURE_COMMAND echo "Configure MPIR..."
     BUILD_COMMAND cd <SOURCE_DIR>/msvc/vs19 && call msbuild.bat gc DLL x64 Release
