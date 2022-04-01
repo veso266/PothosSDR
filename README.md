@@ -33,7 +33,10 @@ and links to the actual source code, checkout this wiki page:
 ## Required packages to install
 
 **Visual studio 2019:** The free community installer is fine.
-Install all of the C++ development tools.
+Install all of the C++ development tools. 
+
+NOTE: When installing Visual Studio 2019 Comunity, you have to specificly install C++ MFC for latest v142 build tools (because its not selected by default)
+If you don't, then some things will not build because afxres.h is missing
 https://visualstudio.microsoft.com/vs/community/
 
 **Python environment:** Download the python3.9 x64 installer.
