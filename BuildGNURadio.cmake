@@ -17,7 +17,7 @@ set(GNURADIO_BRANCH maint-3.9)
 set(GRC_EXE_BRANCH master)
 set(GROSMOSDR_BRANCH master)
 set(GQRX_BRANCH master)
-set(GRSDRPLAY3 master)
+set(GRSDRPLAY3 maint-3.9)
 
 if (NOT EXISTS ${BOOST_ROOT})
     return() #boost is a requirement for all projects here
