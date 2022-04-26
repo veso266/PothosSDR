@@ -97,9 +97,9 @@ include(InstallPrebuilt.cmake)
 include(SetupPython.cmake)
 include(BuildCommon.cmake)
 include(BuildHwDrivers.cmake)
-include(BuildSoapySDR.cmake)
+#include(BuildSoapySDR.cmake)
 include(BuildSDRApps.cmake)
-include(BuildPothos.cmake)
+#include(BuildPothos.cmake)
 include(BuildGNURadio.cmake)
 
 ########################################################################
