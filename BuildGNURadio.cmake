@@ -5,14 +5,14 @@
 ##
 ## * volk
 ## * SoapyVolk
-## * gnuradio
+## * gnuradio (enable gr-utils as well)
 ## * gr-osmosdr
 ## * gqrx
 ## * gr-sdrplay3
 ############################################################
 
 set(VOLK_BRANCH master)
-set(SOAPYVOLK_BRANCH master)
+#set(SOAPYVOLK_BRANCH master)
 set(GNURADIO_BRANCH maint-3.9)
 set(GRC_EXE_BRANCH master)
 set(GROSMOSDR_BRANCH master)
@@ -26,10 +26,12 @@ endif ()
 ############################################################
 # python generation tools
 # volk uses mako
-# gnuradio uses pygccxml PyQt5 pyyaml numpy mako
+# gnuradio uses PyQt5 pyyaml numpy mako 
+# pyqtgraph scipy (gr-filter needs them)
+# click click-plugins (gr-moodtool needs them)
 # gr-sdrplay3 uses six
 ############################################################
-execute_process(COMMAND ${PYTHON3_ROOT}/Scripts/pip.exe install mako pygccxml pyyaml numpy PyQt5 six OUTPUT_QUIET)
+execute_process(COMMAND ${PYTHON3_ROOT}/Scripts/pip.exe install mako pygccxml pyyaml numpy PyQt5 six pyqtgraph scipy click click-plugins OUTPUT_QUIET)
 
 ############################################################
 ## Build Volk
@@ -61,17 +63,17 @@ DeleteRegValue HKEY_LOCAL_MACHINE \\\"${NSIS_ENV}\\\" \\\"VOLK_PREFIX\\\"
 ############################################################
 ## Build SoapyVolk
 ############################################################
-MyExternalProject_Add(SoapyVolk
-    DEPENDS SoapySDR volk
-    GIT_REPOSITORY https://github.com/pothosware/SoapyVOLKConverters.git
-    GIT_TAG ${SOAPYVOLK_BRANCH}
-    CMAKE_DEFAULTS ON
-    CMAKE_ARGS
-        -Wno-dev
-        -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
-        -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
-    LICENSE_FILES COPYING
-)
+#MyExternalProject_Add(SoapyVolk
+#    DEPENDS SoapySDR volk
+#    GIT_REPOSITORY https://github.com/pothosware/SoapyVOLKConverters.git
+#    GIT_TAG ${SOAPYVOLK_BRANCH}
+#    CMAKE_DEFAULTS ON
+#    CMAKE_ARGS
+#        -Wno-dev
+#        -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+#        -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
+#    LICENSE_FILES COPYING
+#)
 
 ############################################################
 ## Build GNU Radio
@@ -119,7 +121,12 @@ MyExternalProject_Add(GNURadio
         -DCMAKE_PREFIX_PATH=${QT5_ROOT}
         -DQWT_INCLUDE_DIRS=${QWT_INCLUDE_DIR}
         -DQWT_LIBRARIES=${QWT_LIBRARY}
+		-DSDL_LIBRARY=C:/Build/PothosSDR/libs/SDL-1.2.15/lib/x64/SDL.lib
+		-DSDL_INCLUDE_DIR=C:/Build/PothosSDR/libs/SDL-1.2.15/include
         -DENABLE_GRC=ON
+		-DENABLE_GR_UTILS=ON
+		-DENABLE_GR_VIDEO_SDL=ON
+		-DENABLE_GR_MODTOOL=ON
     LICENSE_FILES COPYING
 )
 
@@ -166,9 +173,10 @@ DeleteRegKey HKEY_CLASSES_ROOT \\\"GNURadio.Companion\\\"
 ##
 ## * ENABLE_RFSPACE=OFF build errors
 ## * ENABLE_REDPITAYA=OFF build errors
+## NO: DEPENDS GNURadio SoapySDR bladeRF uhd hackRF rtl-sdr osmo-sdr miri-sdr airspy airspyhf
 ############################################################
 MyExternalProject_Add(GrOsmoSDR
-    DEPENDS GNURadio SoapySDR bladeRF uhd hackRF rtl-sdr osmo-sdr miri-sdr airspy airspyhf
+    DEPENDS GNURadio bladeRF uhd hackRF rtl-sdr osmo-sdr miri-sdr airspy airspyhf
     GIT_REPOSITORY git://git.osmocom.org/gr-osmosdr
     GIT_TAG ${GROSMOSDR_BRANCH}
     #PATCH_COMMAND ${GIT_PATCH_HELPER} --git ${GIT_EXECUTABLE}
